@@ -1,0 +1,56 @@
+{
+  "name": "fsuuaas/promocodes",
+  "description": "Promotional Codes Generator for Laravel 5",
+  "keywords": [
+    "promo code",
+    "coupon code",
+    "discount code",
+    "laravel",
+    "php"
+  ],
+  "homepage": "https://github.com/fsuuaas/promocodes",
+  "license": "MIT",
+  "type": "library",
+  "authors": [
+    {
+      "name": "Sharif Uddin Ahamed",
+      "email": "fsuuaas@gmail.com"
+    }
+  ],
+  "require": {
+    "php" : "^7.1",
+    "laravel/framework": "~5.6"
+  },
+  "require-dev": {
+    "orchestra/testbench": "~3.8.0",
+    "phpunit/phpunit": "^8.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "Fsuuaas\\Promocodes\\": "src"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Fsuuaas\\Promocodes\\Tests\\": "tests"
+    }
+  },
+  "scripts": {
+    "phpunit": "vendor/bin/phpunit"
+  },
+  "extra": {
+    "laravel": {
+      "providers": [
+        "Fsuuaas\\Promocodes\\PromocodesServiceProvider"
+      ],
+      "aliases": {
+        "Promocodes": "Fsuuaas\\Promocodes\\Facades\\Promocodes"
+      }
+    }
+  },
+  "config": {
+    "preferred-install": "dist",
+    "sort-packages": true,
+    "optimize-autoloader": true
+  }
+}
