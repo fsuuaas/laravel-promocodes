@@ -1,11 +1,5 @@
 # laravel-promocodes
 
-[![Packagist](https://img.shields.io/packagist/v/zgabievi/promocodes.svg)](https://packagist.org/packages/zgabievi/promocodes)
-[![Packagist](https://img.shields.io/packagist/dt/zgabievi/promocodes.svg)](https://packagist.org/packages/zgabievi/promocodes)
-[![license](https://img.shields.io/github/license/zgabievi/promocodes.svg)](https://packagist.org/packages/zgabievi/promocodes)
-[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/zgabievi/laravel-promocodes/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/zgabievi/laravel-promocodes/?branch=master)
-[![Build Status](https://scrutinizer-ci.com/g/zgabievi/laravel-promocodes/badges/build.png?b=master)](https://scrutinizer-ci.com/g/zgabievi/laravel-promocodes/build-status/master)
-
 > Promocodes generator for [Laravel 5.*](http://laravel.com/). Trying to make the best package in this category. You are welcome to join the party, give me some advices :tada: and make pull requests.
 
 ## Table of Contents
@@ -25,7 +19,7 @@
 
 Install this package via Composer:
 ```bash
-$ composer require zgabievi/promocodes
+$ composer require fsuuaas/promocodes
 ```
 
 > If you are using Laravel 5.5 or later, then installation is done. Otherwise follow the next steps.
@@ -37,7 +31,7 @@ Find the `providers` array and add our service provider.
 ```php
 'providers' => [
     // ...
-    Gabievi\Promocodes\PromocodesServiceProvider::class
+    Fsuuaas\Promocodes\PromocodesServiceProvider::class
 ],
 ```
 
@@ -46,7 +40,7 @@ Find the `aliases` array and add our facade.
 ```php
 'aliases' => [
     // ...
-    'Promocodes' => Gabievi\Promocodes\Facades\Promocodes::class
+    'Promocodes' => Fsuuaas\Promocodes\Facades\Promocodes::class
 ],
 ```
 
@@ -117,7 +111,7 @@ Promocodes::createDisposable($amount = 1, $reward = null, array $data = [], $exp
 
 Check if given code exists, is usable and not yet expired. 
 
-This code may throw `\Gabievi\Promocodes\Exceptions\InvalidPromocodeException` if there is not such promocode in database, with give code.
+This code may throw `\Fsuuaas\Promocodes\Exceptions\InvalidPromocodeException` if there is not such promocode in database, with give code.
 
 Returns `Promocode` object if valid, or `false` if not.
 
@@ -139,9 +133,9 @@ If you want to check if user tries to use promocode for second time you can call
 
 Redeem or apply code. Redeem is alias for apply method. 
 
-User should be authenticated to redeem code or this method will throw an exception (`\Gabievi\Promocodes\Exceptions\UnauthenticatedException`). 
+User should be authenticated to redeem code or this method will throw an exception (`\Fsuuaas\Promocodes\Exceptions\UnauthenticatedException`). 
 
-Also if authenticated user will try to apply code twice, it will throw an exception (`\Gabievi\Promocodes\Exceptions\AlreadyUsedException`)
+Also if authenticated user will try to apply code twice, it will throw an exception (`\Fsuuaas\Promocodes\Exceptions\AlreadyUsedException`)
 
 Returns `Promocode` object if applied, or `false` if not.
 
@@ -198,7 +192,7 @@ If you want to use user relation open `app/User.php` and make it `Rewardable` as
 namespace App;
 
 use Illuminate\Notifications\Notifiable;
-use Gabievi\Promocodes\Traits\Rewardable;
+use Fsuuaas\Promocodes\Traits\Rewardable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable
@@ -257,12 +251,3 @@ User::redeemCode('ABC-DEF', function($promocode) {
 // bar
 ```
 
-## Testing
-
-Finally it's here. I've written some test to keep this package healthy and stable
-
-![laravel-promocodes tests](https://user-images.githubusercontent.com/1515299/29971701-4971da9e-8f3a-11e7-9f68-f7677400ef16.png)
-
-## License
-
-laravel-promocodes is licensed under a [MIT License](https://github.com/zgabievi/laravel-promocodes/blob/master/LICENSE).
