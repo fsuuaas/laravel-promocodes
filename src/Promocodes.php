@@ -190,6 +190,37 @@ class Promocodes
 
         return false;
     }
+    
+        public function applyByAdmin($code, $user)
+    {
+        if (!auth()->check()) {
+            throw new UnauthenticatedException;
+        }
+
+        try {
+            if ($promocode = $this->check($code)) {
+                if ($this->isSecondUsageAttempt($promocode)) {
+                    throw new AlreadyUsedException;
+                }
+
+                $promocode->users()->attach($user, [
+                    'promocode_id' => $promocode->id,
+                    'used_at' => Carbon::now(),
+                ]);
+
+                if (!is_null($promocode->quantity)) {
+                    $promocode->quantity -= 1;
+                    $promocode->save();
+                }
+
+                return $promocode->load('users');
+            }
+        } catch (InvalidPromocodeException $exception) {
+            //
+        }
+
+        return false;
+    }
 
     /**
      * Reedem promocode to user that it's used from now.
@@ -203,6 +234,11 @@ class Promocodes
     public function redeem($code)
     {
         return $this->apply($code);
+    }
+    
+    public function redeemByAdmin($code, $user)
+    {
+        return $this->applyByAdmin($code, $user);
     }
 
     /**
