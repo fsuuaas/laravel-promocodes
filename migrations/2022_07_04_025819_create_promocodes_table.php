@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create(config('promocodes.table', 'promocodes'), function (Blueprint $table) {
-            $table->increments('id');
+            $table->id();
             $table->string('code', 32)->unique();
             $table->double('reward', 10, 2)->nullable();
             $table->integer('quantity')->nullable();
